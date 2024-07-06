@@ -20,6 +20,7 @@ FORMULAE=(
   nvm
   golang
   tree
+  glow
 )
 CASKS=(
   google-chrome
