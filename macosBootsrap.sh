@@ -21,6 +21,7 @@ FORMULAE=(
   golang
   tree
   glow
+  lazygit
 )
 CASKS=(
   google-chrome
