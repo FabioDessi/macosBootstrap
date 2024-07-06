@@ -20,12 +20,16 @@ fi
 # Clean existing files
 echo "Cleaning existing config files"
 rm -rf "${HOME_DIR}/.config"
-rm -f "${HOME_DIR}/.zshrc"
 
 # Init stow
 echo "Initialize stow"
 cd "${DOTFILES_DIR}"
 stow .
+
+# Remove old .zprofile
+cd "${HOME_DIR}"
+rm -f "${HOME_DIR}/.zprofile"
+source "${HOME_DIR}/.zshrc"
 
 # tmux config
 echo "Configuring tmux"
@@ -35,3 +39,8 @@ else
     git clone https://github.com/tmux-plugins/tpm "${TMUX_DIR}/plugins/tpm"
 fi
 tmux source "${TMUX_DIR}/tmux.conf"
+
+echo "Dotfiles setup done."
+echo "Remember to install TMUX plugins CTRL-A SHIFT-I."
+echo "Download and install JetBrains Mono font and finish the setup importing iTerm2 profile."
+echo "Look at README for info."

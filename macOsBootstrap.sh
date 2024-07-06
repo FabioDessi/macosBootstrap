@@ -31,6 +31,8 @@ CASKS=(
   rectangle
   obsidian
   docker
+  postman
+  raspberry-pi-imager 
 )
 
 # Ensure Apple's command line tools are installed
@@ -67,9 +69,9 @@ if ! command -v brew &>/dev/null; then
     echo "Installing Homebrew..."
     /bin/bash install_homebrew.sh
 
-    # Add Homebrew to PATH by updating .zshrc for zsh
+    # Add Homebrew to PATH by updating .zprofile for zsh
     echo "Configuring Homebrew in zsh environment..."
-    echo -e "\neval \"\$($HOMEBREW_BIN_PATH shellenv)\"" >> ~/.zshrc
+    echo -e "\neval \"\$($HOMEBREW_BIN_PATH shellenv)\"" >> ~/.zprofile
     eval "$($HOMEBREW_BIN_PATH shellenv)"
 
     echo "Verifying Homebrew installation..."
@@ -106,4 +108,4 @@ sudo -u $SUDO_USER brew install --cask ${CASKS[@]} 2>&1 | tee "$LOG_DIR/cask_ins
 # Cleanup old packages
 brew cleanup
 
-echo "Installation of applications complete! Run postInstall.sh"
+echo "Installation of applications complete! Run ohMyZsh.sh next."
