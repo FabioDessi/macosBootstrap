@@ -26,7 +26,6 @@ FORMULAE=(
 CASKS=(
   google-chrome
   brave-browser
-  nordpass
   iterm2
   utm
   spotify
