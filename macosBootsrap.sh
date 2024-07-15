@@ -10,30 +10,31 @@ LOG_DIR="$HOME/Homebrew-logs"
 mkdir -p "$LOG_DIR"  # Create log directory if it does not exist
 
 FORMULAE=(
-  neovim
-  git
-  tmux
-  htop
   fd
+  git
+  glow
+  go
+  htop
+  lazygit
+  neovim
+  nvm
   ripgrep
   stow
-  nvm
-  golang
+  tmux
   tree
-  glow
-  lazygit
+  wireguard-tools
 )
 CASKS=(
-  google-chrome
   brave-browser
-  iterm2
-  utm
-  spotify
-  rectangle
-  obsidian
   docker
+  google-chrome
+  iterm2
+  obsidian
   postman
   raspberry-pi-imager 
+  rectangle
+  spotify
+  utm
 )
 
 # Ensure Apple's command line tools are installed
