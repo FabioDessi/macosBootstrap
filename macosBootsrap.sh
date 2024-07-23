@@ -36,6 +36,7 @@ CASKS=(
   rectangle
   spotify
   utm
+  yubico-authenticator
 )
 
 # Ensure Apple's command line tools are installed
