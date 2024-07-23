@@ -34,6 +34,7 @@ CASKS=(
   postman
   raspberry-pi-imager 
   rectangle
+  slack
   spotify
   utm
   yubico-authenticator
