@@ -11,6 +11,7 @@ mkdir -p "$LOG_DIR"  # Create log directory if it does not exist
 
 FORMULAE=(
   atuin
+  docker
   fd
   git
   glow
