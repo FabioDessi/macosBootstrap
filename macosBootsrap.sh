@@ -38,6 +38,7 @@ CASKS=(
   slack
   spotify
   utm
+  visual-studio-code
   yubico-authenticator
 )
 
