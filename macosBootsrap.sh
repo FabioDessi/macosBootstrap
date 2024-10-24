@@ -7,36 +7,43 @@ IFS=$'\n\t'
 SUDO_USER=$(whoami)
 HOMEBREW_BIN_PATH="/opt/homebrew/bin/brew"
 LOG_DIR="$HOME/Homebrew-logs"
-mkdir -p "$LOG_DIR"  # Create log directory if it does not exist
+mkdir -p "$LOG_DIR" # Create log directory if it does not exist
 
 FORMULAE=(
+  arl/arl/gitmux
   atuin
   docker
   fd
   git
   glow
   go
+  heroku/brew/heroku
   htop
   lazygit
+  luarocks
   neovim
   nvm
   ripgrep
   stow
   tmux
   tree
+  wget
   wireguard-tools
 )
 CASKS=(
   brave-browser
+  crystalfetch
   docker
+  font-monospace
   google-chrome
   iterm2
   obsidian
   postman
-  raspberry-pi-imager 
+  raspberry-pi-imager
   rectangle
   slack
   spotify
+  transmission
   utm
   visual-studio-code
   yubico-authenticator
@@ -48,7 +55,7 @@ if ! xcode-select -p &>/dev/null; then
   xcode-select --install
 
   # Wait until the Command Line Tools are installed with a timeout
-  max_retries=60  # Number of retries (5 seconds each, total 5*60 = 300 seconds)
+  max_retries=60 # Number of retries (5 seconds each, total 5*60 = 300 seconds)
   count=0
   until xcode-select -p &>/dev/null; do
     sleep 5
@@ -78,11 +85,11 @@ if ! command -v brew &>/dev/null; then
 
     # Add Homebrew to PATH by updating .zprofile for zsh
     echo "Configuring Homebrew in zsh environment..."
-    echo -e "\neval \"\$($HOMEBREW_BIN_PATH shellenv)\"" >> ~/.zprofile
+    echo -e "\neval \"\$($HOMEBREW_BIN_PATH shellenv)\"" >>~/.zprofile
     eval "$($HOMEBREW_BIN_PATH shellenv)"
 
     echo "Verifying Homebrew installation..."
-    max_retries=30  # Total timeout 150 seconds (5 seconds each)
+    max_retries=30 # Total timeout 150 seconds (5 seconds each)
     count=0
     until command -v brew &>/dev/null; do
       sleep 5
@@ -110,7 +117,7 @@ brew install ${FORMULAE[@]} 2>&1 | tee "$LOG_DIR/formulae_install.log"
 
 # Install GUI applications
 echo "Installing GUI applications..."
-sudo -u $SUDO_USER brew install --cask ${CASKS[@]} 2>&1 | tee "$LOG_DIR/cask_install.log"
+sudo -u "$SUDO_USER" brew install --cask ${CASKS[@]} 2>&1 | tee "$LOG_DIR/cask_install.log"
 
 # Cleanup old packages
 brew cleanup
