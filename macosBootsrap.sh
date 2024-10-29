@@ -12,6 +12,8 @@ mkdir -p "$LOG_DIR" # Create log directory if it does not exist
 FORMULAE=(
   arl/arl/gitmux
   atuin
+  cask
+  direnv
   docker
   fd
   git
