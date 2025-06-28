@@ -12,14 +12,15 @@ mkdir -p "$LOG_DIR" # Create log directory if it does not exist
 FORMULAE=(
   arl/arl/gitmux
   atuin
+  azure-cli
+  azure/functions/azure-functions-core-tools
   cask
   direnv
-  docker
+  dotnet@8
   fd
   git
   glow
   go
-  heroku/brew/heroku
   htop
   lazygit
   luarocks
@@ -33,21 +34,31 @@ FORMULAE=(
   wireguard-tools
 )
 CASKS=(
+  1password
+  1password-cli
+  balenaetcher
   brave-browser
   crystalfetch
   docker
-  font-monospace
+  docker-desktop
+  font-monaspace
   google-chrome
   iterm2
+  microsoft-auto-update
+  microsoft-azure-storage-explorer
+  microsoft-teams
   obsidian
   postman
   raspberry-pi-imager
   rectangle
+  rider
   slack
   spotify
   transmission
   utm
   visual-studio-code
+  whatsapp
+  windows-app
   yubico-authenticator
 )
 
