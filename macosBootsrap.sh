@@ -4,63 +4,9 @@ set -euo pipefail
 IFS=$'\n\t'
 
 # Variables
-SUDO_USER=$(whoami)
 HOMEBREW_BIN_PATH="/opt/homebrew/bin/brew"
-LOG_DIR="$HOME/Homebrew-logs"
-mkdir -p "$LOG_DIR" # Create log directory if it does not exist
-
-FORMULAE=(
-  arl/arl/gitmux
-  atuin
-  azure-cli
-  azure/functions/azure-functions-core-tools
-  cask
-  direnv
-  dotnet@8
-  fd
-  git
-  glow
-  go
-  htop
-  lazygit
-  luarocks
-  neovim
-  nvm
-  ripgrep
-  stow
-  tmux
-  tree
-  wget
-  wireguard-tools
-)
-CASKS=(
-  1password
-  1password-cli
-  balenaetcher
-  brave-browser
-  crystalfetch
-  docker
-  docker-desktop
-  font-monaspace
-  google-chrome
-  iterm2
-  microsoft-auto-update
-  microsoft-azure-storage-explorer
-  microsoft-teams
-  obsidian
-  postman
-  raspberry-pi-imager
-  rectangle
-  rider
-  slack
-  spotify
-  transmission
-  utm
-  visual-studio-code
-  whatsapp
-  windows-app
-  yubico-authenticator
-)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BREWFILE="${SCRIPT_DIR}/Brewfile"
 
 # Ensure Apple's command line tools are installed
 if ! xcode-select -p &>/dev/null; then
@@ -122,15 +68,14 @@ else
 fi
 
 brew update
-brew upgrade
 
-# Install CLI tools
-echo "Installing command-line tools..."
-brew install ${FORMULAE[@]} 2>&1 | tee "$LOG_DIR/formulae_install.log"
-
-# Install GUI applications
-echo "Installing GUI applications..."
-sudo -u "$SUDO_USER" brew install --cask ${CASKS[@]} 2>&1 | tee "$LOG_DIR/cask_install.log"
+# Install everything declared in the Brewfile: formulae, casks, Mac App Store
+# apps (via mas) and VS Code extensions. Regenerate it anytime with:
+#   brew bundle dump --file Brewfile --force
+# NOTE: the Mac App Store apps (mas) require being signed in to the App Store;
+# those lines will fail (and be reported) if you are not signed in yet.
+echo "Installing packages from Brewfile..."
+brew bundle install --file="$BREWFILE"
 
 # Cleanup old packages
 brew cleanup
